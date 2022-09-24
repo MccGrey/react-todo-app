@@ -15,6 +15,7 @@ export const TodoForm = (props) => {
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       <input
+        value={input}
         onChange={(e) => setInput(e.target.value)}
         className="todo-input"
         placeholder="Add a Todo"

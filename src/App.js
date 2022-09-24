@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { TodoForm } from "./components/TodoForm";
+import { TodoItem } from "./components/TodoItem";
 function App() {
   const [todos, setTodos] = useState([]);
 
@@ -16,10 +17,17 @@ function App() {
     setTodos(newTodos);
   };
 
+  const removeTodo = (id) => {
+    let updatedTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
   return (
     <div className="todo-app">
       <h1>Todo List</h1>
       <TodoForm addTodo={addTodo} />
+      {todos.map((todo) => {
+        return <TodoItem removetodo={removeTodo} todo={todo} key={todo.id} />;
+      })}
     </div>
   );
 }
